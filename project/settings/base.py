@@ -2,6 +2,32 @@
 # repo. If you need to override a setting locally, use settings_local.py
 
 from funfactory.settings_base import *
+import json
+
+with open('/home/dotcloud/environment.json') as f:
+    env = json.load(f)
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'playdoh_app',
+        'USER': env['DOTCLOUD_DB_MYSQL_LOGIN'],
+        'PASSWORD': env['DOTCLOUD_DB_MYSQL_PASSWORD'],
+        'HOST': env['DOTCLOUD_DB_MYSQL_HOST'],
+        'PORT': env['DOTCLOUD_DB_MYSQL_PORT'],
+        'OPTIONS': {
+            'init_command': 'SET storage_engine=InnoDB',
+            'charset' : 'utf8',
+            'use_unicode' : True,
+        },
+        'TEST_CHARSET': 'utf8',
+        'TEST_COLLATION': 'utf8_general_ci',
+    },
+    # 'slave': {
+    #     ...
+    # },
+}
+
 
 # Name of the top-level module where you put all your apps.
 # If you did not install Playdoh with the funfactory installer script
@@ -36,7 +62,7 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-SITE_URL = 'http://127.0.0.1:8000'
+SITE_URL = 'http://slidesync-tgavankar.dotcloud.com'
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = 'examples.home'
 LOGIN_REDIRECT_URL_FAILURE = 'examples.home'
