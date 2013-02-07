@@ -1,3 +1,2 @@
 #!/bin/sh
-mysql -u root -e 'create databse playdoh_app;'
 python manage.py syncdb --noinput 
