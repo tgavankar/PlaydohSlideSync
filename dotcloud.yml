@@ -1,6 +1,6 @@
 www:
   type: python
-  prebuild: ./prebuild.sh
+  prebuild: ./prebuild
 db:
   type: mysql
 cache:
