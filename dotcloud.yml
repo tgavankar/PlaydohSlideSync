@@ -1,6 +1,5 @@
 www:
   type: python
-  prebuild: ./prebuild
 db:
   type: mysql
 cache:
