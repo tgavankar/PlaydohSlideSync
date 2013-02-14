@@ -1,16 +1,20 @@
 # This is your project's main settings file that can be committed to your
 # repo. If you need to override a setting locally, use settings_local.py
 
+from collections import defaultdict
 from funfactory.settings_base import *
 import json
 
-with open('/home/dotcloud/environment.json') as f:
-    env = json.load(f)
+try:
+    with open('/home/dotcloud/environment.json') as f:
+        env = json.load(f)
+except IOError as e:
+    env = defaultdict(str)
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'playdoh_app',
+        'NAME': 'slidesync_app',
         'USER': env['DOTCLOUD_DB_MYSQL_LOGIN'],
         'PASSWORD': env['DOTCLOUD_DB_MYSQL_PASSWORD'],
         'HOST': env['DOTCLOUD_DB_MYSQL_HOST'],
