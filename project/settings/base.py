@@ -32,6 +32,18 @@ DATABASES = {
     # },
 }
 
+CACHES = {
+    'default': {
+        'BACKEND': 'redis_cache.RedisCache',
+        'LOCATION': env['DOTCLOUD_CACHE_REDIS_HOST']+':'+env['DOTCLOUD_CACHE_REDIS_PORT'],
+        'OPTIONS': {
+            'DB': 1,
+            'PASSWORD': env['DOTCLOUD_CACHE_REDIS_PASSWORD'],
+            'PARSER_CLASS': 'redis.connection.HiredisParser'
+        },
+    },
+}
+
 
 # Name of the top-level module where you put all your apps.
 # If you did not install Playdoh with the funfactory installer script

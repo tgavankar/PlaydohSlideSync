@@ -2,5 +2,9 @@ from .base import *
 try:
     from .local import *
 except ImportError, exc:
-    pass
-from .secret import *
+    exc.args = tuple(['%s (did you rename settings/local.py-dist?)' % exc.args[0]])
+    raise exc
+try:
+	from .dev import *
+except ImportError, exc:
+	pass

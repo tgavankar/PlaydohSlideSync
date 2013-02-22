@@ -1,1 +1,4 @@
 -r requirements/compiled.txt
+hiredis
+redis
+django-redis-cache
